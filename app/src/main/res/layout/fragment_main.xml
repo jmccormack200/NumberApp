@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/main_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/let_s_see_some_numbers"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingTop="@dimen/common_ui_spacing_lg"
+        android:textSize="@dimen/common_ui_text_size_lg"/>
+
+    <Button
+        android:id="@+id/login_main_loginBtn"
+        style="@style/common_ui_primary_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/common_ui_spacing_lg"
+        android:layout_marginTop="@dimen/common_ui_spacing_md"
+        android:layout_marginEnd="@dimen/common_ui_spacing_lg"
+        android:padding="@dimen/common_ui_spacing_md"
+        android:text="@string/get_a_random_number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_title"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

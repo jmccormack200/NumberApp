@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="common_ui_spacing_xsm">4dp</dimen>
+    <dimen name="common_ui_spacing_sm">8dp</dimen>
+    <dimen name="common_ui_spacing_md">16dp</dimen>
+    <dimen name="common_ui_spacing_lg">32dp</dimen>
+    <dimen name="common_ui_spacing_xlg">60dp</dimen>
+
+    <dimen name="common_ui_text_size_xsm">4sp</dimen>
+    <dimen name="common_ui_text_size_sm">8sp</dimen>
+    <dimen name="common_ui_text_size_md">16sp</dimen>
+    <dimen name="common_ui_text_size_lg">24sp</dimen>
+    <dimen name="common_ui_text_size_xlg">32sp</dimen>
+</resources>
