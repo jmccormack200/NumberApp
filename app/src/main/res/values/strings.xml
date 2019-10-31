@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Numbers</string>
-    <string name="let_s_see_some_numbers">Let\'s see some numbers</string>
-    <string name="get_a_random_number">Get a Random Number</string>
+    <string name="intro_title">Find your lucky number and more information about that number</string>
+    <string name="get_a_random_number">Get My Random Number</string>
 </resources>

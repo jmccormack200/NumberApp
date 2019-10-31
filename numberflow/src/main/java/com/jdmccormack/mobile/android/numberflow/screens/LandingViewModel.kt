@@ -5,14 +5,20 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jdmccormack.mobile.android.networking.Result
+import com.jdmccormack.mobile.android.numberflow.services.NumberFactRepository
+import com.jdmccormack.mobile.android.numberflow.services.RandomNumberRepository
 import kotlinx.coroutines.launch
 
 class LandingViewModel(
-    private val randomNumberRepository: RandomNumberRepository
+    private val randomNumberRepository: RandomNumberRepository,
+    private val numberFactRepository: NumberFactRepository
 ) : ViewModel() {
 
     private val _randomNumber = MutableLiveData<Number>()
     val randomNumber: LiveData<Number> = _randomNumber
+
+    private val _numberFact = MutableLiveData<String>()
+    val numberFact: LiveData<String> = _numberFact
 
     init {
         fetchData()
@@ -23,6 +29,18 @@ class LandingViewModel(
             _randomNumber.value = when (val result = randomNumberRepository.getRandomNumber()) {
                 is Result.Failure -> 404
                 is Result.Success -> result.value.data[0]
+            }
+        }
+    }
+
+    //TODO Remove this function and the button and get the data on load.
+    fun fetchFactBtnClicked() {
+        viewModelScope.launch {
+            _numberFact.value = when (val result = numberFactRepository.getFactAboutNumber(
+                _randomNumber.value ?: 404
+            )) {
+                is Result.Failure -> "No Fact found"
+                is Result.Success -> result.value.text
             }
         }
     }

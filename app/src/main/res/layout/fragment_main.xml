@@ -8,10 +8,11 @@
         android:id="@+id/main_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/let_s_see_some_numbers"
+        android:text="@string/intro_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:textAlignment="center"
         android:paddingTop="@dimen/common_ui_spacing_lg"
         android:textSize="@dimen/common_ui_text_size_lg"/>
 

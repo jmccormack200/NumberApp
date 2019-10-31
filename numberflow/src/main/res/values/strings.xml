@@ -2,4 +2,5 @@
     <string name="app_name">numberFlow</string>
     <string name="numberflow_here_is_your_number">Here is your number:</string>
     <string name="numberflow_regenerate">Regenerate</string>
+    <string name="number_fact_button_text">Get a fact about your number</string>
 </resources>
