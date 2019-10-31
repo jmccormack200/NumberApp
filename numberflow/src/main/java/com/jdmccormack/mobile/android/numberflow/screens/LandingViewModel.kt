@@ -6,11 +6,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jdmccormack.mobile.android.networking.Result
 import com.jdmccormack.mobile.android.numberflow.services.NumberFactRepository
-import com.jdmccormack.mobile.android.numberflow.services.RandomNumberRepository
+import com.jdmccormack.mobile.android.numberflow.services.RandomNumberCachingRepository
 import kotlinx.coroutines.launch
 
 class LandingViewModel(
-    private val randomNumberRepository: RandomNumberRepository,
+    private val randomNumberRepository: RandomNumberCachingRepository,
     private val numberFactRepository: NumberFactRepository
 ) : ViewModel() {
 
@@ -28,7 +28,7 @@ class LandingViewModel(
         viewModelScope.launch {
             _randomNumber.value = when (val result = randomNumberRepository.getRandomNumber()) {
                 is Result.Failure -> 404
-                is Result.Success -> result.value.data[0]
+                is Result.Success -> result.value
             }
         }
     }
@@ -41,6 +41,15 @@ class LandingViewModel(
             )) {
                 is Result.Failure -> "No Fact found"
                 is Result.Success -> result.value.text
+            }
+        }
+    }
+
+    fun getNewRandomNumberClicked() {
+        viewModelScope.launch {
+            _randomNumber.value = when (val result = randomNumberRepository.getNewRandomNumber()) {
+                is Result.Failure -> 404
+                is Result.Success -> result.value
             }
         }
     }

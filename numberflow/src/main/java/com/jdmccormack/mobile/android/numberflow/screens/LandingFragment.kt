@@ -3,17 +3,24 @@ package com.jdmccormack.mobile.android.numberflow.screens
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
+import com.jdmccormack.mobile.android.commonui.SharedPreferencesManager
 import com.jdmccormack.mobile.android.commonui.base.BaseFragment
 import com.jdmccormack.mobile.android.numberflow.R
 import com.jdmccormack.mobile.android.numberflow.services.NumberFactRepository
-import com.jdmccormack.mobile.android.numberflow.services.RandomNumberRepository
+import com.jdmccormack.mobile.android.numberflow.services.RandomNumberCachingRepository
 import kotlinx.android.synthetic.main.numberflow_fragment_landing.*
 
 class LandingFragment : BaseFragment() {
 
     private val viewModel by lazy {
         obtainViewModel {
-            LandingViewModel(RandomNumberRepository(), NumberFactRepository())
+            LandingViewModel(
+                RandomNumberCachingRepository(
+                    sharedPreferencesManager = SharedPreferencesManager.getInstance(
+                        requireContext()
+                    )
+                ), NumberFactRepository()
+            )
         }
     }
 
@@ -26,6 +33,9 @@ class LandingFragment : BaseFragment() {
     private fun configureUI() {
         fetchFactBtn.setOnClickListener {
             viewModel.fetchFactBtnClicked()
+        }
+        regenerateBtn.setOnClickListener {
+            viewModel.getNewRandomNumberClicked()
         }
     }
 
