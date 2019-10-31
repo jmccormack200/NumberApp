@@ -1,0 +1,44 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.jdmccormack.mobile.android.numbers"
+        minSdkVersion 26
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation Kotlin.jvm
+    implementation Kotlin.core
+
+    implementation Navigation.fragment
+    implementation Navigation.navigationUI
+
+    implementation Misc.material
+    implementation Misc.appCompat
+    implementation Misc.constraintLayout
+
+    testImplementation SharedTestLibs.junit
+    testImplementation SharedTestLibs.junitKtx
+    testImplementation SharedTestLibs.coreTesting
+    testImplementation SharedTestLibs.espresso
+    testImplementation SharedTestLibs.mockk
+    testImplementation UnitTestLib.robolectric
+}
