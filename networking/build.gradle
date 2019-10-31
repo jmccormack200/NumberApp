@@ -1,32 +1,29 @@
-apply plugin: 'com.android.application'
-
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+apply plugin: "kotlin-kapt"
 
 android {
     compileSdkVersion 28
+
+
     defaultConfig {
-        applicationId "com.jdmccormack.mobile.android.numbers"
         minSdkVersion 26
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-    compileOptions {
-        sourceCompatibility = 1.8
-        targetCompatibility = 1.8
-    }
+
 }
 
 dependencies {
@@ -35,12 +32,12 @@ dependencies {
     implementation Kotlin.jvm
     implementation Kotlin.core
 
-    implementation Navigation.fragment
-    implementation Navigation.navigationUI
+    implementation Network.retrofit
+    implementation Network.retrofitGson
+    implementation Network.retrofitCoroutineAdapter
+    implementation Network.okhttpInterceptor
 
-    implementation Misc.material
-    implementation Misc.appCompat
-    implementation Misc.constraintLayout
+    implementation Misc.timber
 
     testImplementation SharedTestLibs.junit
     testImplementation SharedTestLibs.junitKtx
@@ -50,5 +47,4 @@ dependencies {
     testImplementation UnitTestLib.robolectric
 
     implementation project(path: ':commonui')
-    implementation project(path: ':numberflow')
 }

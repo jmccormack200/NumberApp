@@ -10,5 +10,9 @@
         android:name="com.jdmccormack.mobile.android.numbers.MainFragment"
         android:label="MainFragment"
         tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_mainFragment_to_login_navigation"
+            app:destination="@id/numberflow_landingFragment" />
     </fragment>
+    <include app:graph="@navigation/numberflow_navigation" />
 </navigation>

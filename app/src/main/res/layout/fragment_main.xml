@@ -16,7 +16,7 @@
         android:textSize="@dimen/common_ui_text_size_lg"/>
 
     <Button
-        android:id="@+id/login_main_loginBtn"
+        android:id="@+id/main_navigateBtn"
         style="@style/common_ui_primary_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

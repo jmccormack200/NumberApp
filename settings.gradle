@@ -1,2 +1,2 @@
-include ':app', ':buildSrc', ':commonui'
+include ':app', ':buildSrc', ':commonui', ':networking', ':numberflow'
 rootProject.name='Numbers'

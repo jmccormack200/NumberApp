@@ -71,7 +71,8 @@ ext {
             cardView        : "androidx.cardview:cardview:1.0.0",
             recyclerView    : "androidx.recyclerview:recyclerview:1.1.0-beta01",
             annotation      : "androidx.annotation:annotation:1.1.0",
-            threeTenABP     : "com.jakewharton.threetenabp:threetenabp:1.2.1"
+            threeTenABP     : "com.jakewharton.threetenabp:threetenabp:1.2.1",
+            timber          : "com.jakewharton.timber:timber:4.7.1"
     ]
 
     SharedTestLibs = [
