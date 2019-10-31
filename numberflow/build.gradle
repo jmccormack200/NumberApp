@@ -38,6 +38,11 @@ dependencies {
     implementation Misc.appCompat
     implementation Misc.constraintLayout
 
+    implementation Network.retrofit
+    implementation Network.retrofitGson
+    implementation Network.retrofitCoroutineAdapter
+    implementation Network.okhttpInterceptor
+
     testImplementation SharedTestLibs.junit
     testImplementation SharedTestLibs.junitKtx
     testImplementation SharedTestLibs.coreTesting
@@ -46,4 +51,5 @@ dependencies {
     testImplementation UnitTestLib.robolectric
 
     implementation project(path: ':commonui')
+    implementation project(path: ':networking')
 }

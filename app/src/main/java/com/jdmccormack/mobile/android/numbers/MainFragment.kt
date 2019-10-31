@@ -24,7 +24,6 @@ class MainFragment : BaseFragment() {
 
     private fun configureUIListener() {
         main_navigateBtn.setOnClickListener {
-            Log.e("ConfigureUI", "Called")
             viewModel.mainNavigateBtnClicked()
         }
     }

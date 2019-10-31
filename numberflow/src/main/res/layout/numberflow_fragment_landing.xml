@@ -1,11 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/randomNumber_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello from numberFlow"/>
+        android:text="@string/numberflow_here_is_your_number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/common_ui_spacing_lg"/>
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/randomNumber_displayPoint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/randomNumber_title"
+        android:layout_marginTop="@dimen/common_ui_spacing_lg"
+        android:textSize="@dimen/common_ui_text_size_lg"
+        tools:text="42"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/randomNumber_displayPoint"
+        android:padding="@dimen/common_ui_spacing_md"
+        android:layout_marginStart="@dimen/common_ui_spacing_lg"
+        android:layout_marginEnd="@dimen/common_ui_spacing_lg"
+        android:layout_marginTop="@dimen/common_ui_spacing_md"
+        android:text="@string/numberflow_regenerate"
+        style="@style/common_ui_primary_button"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
