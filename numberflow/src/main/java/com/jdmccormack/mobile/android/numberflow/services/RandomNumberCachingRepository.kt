@@ -15,14 +15,12 @@ class RandomNumberCachingRepository(
 ) {
     suspend fun getRandomNumber(refresh: Boolean): Result<String, Number> {
         if (!refresh && getLocalRandomNumber() != DEFAULT_RANDOM_NUMBER) {
-            Log.e("NOT", " Returning New Number")
             return Result.Success(getLocalRandomNumber())
         }
         return getNewRandomNumber()
     }
 
     suspend fun getNewRandomNumber(): Result<String, Number> {
-        Log.e("Getting new number", "Getting new number")
         return try {
             val result = randomNumberService.getRandomNumber(1, "uint8")
             if (result.success) {
