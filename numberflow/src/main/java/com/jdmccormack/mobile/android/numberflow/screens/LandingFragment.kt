@@ -6,18 +6,22 @@ import androidx.lifecycle.Observer
 import com.jdmccormack.mobile.android.commonui.SharedPreferencesManager
 import com.jdmccormack.mobile.android.commonui.base.BaseFragment
 import com.jdmccormack.mobile.android.numberflow.R
-import com.jdmccormack.mobile.android.numberflow.services.NumberFactRepository
-import com.jdmccormack.mobile.android.numberflow.services.RandomNumberCachingRepository
+import com.jdmccormack.mobile.android.numberflow.services.NumberFlowDatabase
+import com.jdmccormack.mobile.android.numberflow.services.numberfact.NumberFactCachingRepository
+import com.jdmccormack.mobile.android.numberflow.services.randomnumber.RandomNumberCachingRepository
 import com.jdmccormack.mobile.android.numberflow.services.usecases.GetNumberUseCase
 import kotlinx.android.synthetic.main.numberflow_fragment_landing.*
 
 class LandingFragment : BaseFragment() {
 
+//    TODO: can we avoid the !! ?
     private val viewModel by lazy {
         obtainViewModel {
             LandingViewModel(
                 GetNumberUseCase(
-                    NumberFactRepository(),
+                    NumberFactCachingRepository(
+                        numberFactsDao = NumberFlowDatabase.getNumberFlowDatabase(application!!.applicationContext)!!.numberFactsDao()
+                    ),
                     RandomNumberCachingRepository(
                         sharedPreferencesManager = SharedPreferencesManager.getInstance(
                             requireContext()

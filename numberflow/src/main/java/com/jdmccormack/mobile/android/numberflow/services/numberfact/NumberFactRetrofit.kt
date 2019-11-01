@@ -1,4 +1,4 @@
-package com.jdmccormack.mobile.android.numberflow.services
+package com.jdmccormack.mobile.android.numberflow.services.numberfact
 
 import com.jdmccormack.mobile.android.networking.RetrofitClient
 

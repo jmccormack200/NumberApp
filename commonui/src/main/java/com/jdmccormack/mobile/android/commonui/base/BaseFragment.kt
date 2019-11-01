@@ -1,5 +1,6 @@
 package com.jdmccormack.mobile.android.commonui.base
 
+import android.app.Application
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,9 @@ abstract class BaseFragment : Fragment() {
      * The [layoutResourceId] of the resource file to be inflated in the fragment.
      */
     protected abstract val layoutResourceId: Int
+
+    protected val application: Application?
+        get() = activity?.application
 
     /**
      * Helper method that overrides onCreateView to automatically inflate the layout provided
@@ -50,6 +54,6 @@ abstract class BaseFragment : Fragment() {
     }
 
     private fun navigate(event: NavigationEvent) {
-            findNavController().navigate(event.navId, event.navigationArguments)
+        findNavController().navigate(event.navId, event.navigationArguments)
     }
 }

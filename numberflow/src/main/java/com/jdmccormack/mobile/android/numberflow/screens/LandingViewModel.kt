@@ -5,8 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jdmccormack.mobile.android.networking.Result
-import com.jdmccormack.mobile.android.numberflow.services.NumberFactRepository
-import com.jdmccormack.mobile.android.numberflow.services.RandomNumberCachingRepository
 import com.jdmccormack.mobile.android.numberflow.services.models.NumberFact
 import com.jdmccormack.mobile.android.numberflow.services.usecases.GetNumberUseCase
 import kotlinx.coroutines.launch
@@ -36,7 +34,7 @@ class LandingViewModel(
     private fun getNumber(refresh: Boolean = false) {
         viewModelScope.launch {
             val result = when (val result = getNumberUseCase.invoke(refresh)) {
-                is Result.Failure -> NumberFact("Error", 404, false, "Error")
+                is Result.Failure -> NumberFact(404, "Error")
                 is Result.Success -> result.value
             }
             _randomNumber.value = result.number

@@ -1,6 +1,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: "kotlin-kapt"
+
 android {
     compileSdkVersion 28
 
@@ -42,6 +44,10 @@ dependencies {
     implementation Network.retrofitGson
     implementation Network.retrofitCoroutineAdapter
     implementation Network.okhttpInterceptor
+
+    implementation Room.roomRuntime
+    implementation Room.roomKtx
+    kapt Room.roomCompiler
 
     testImplementation SharedTestLibs.junit
     testImplementation SharedTestLibs.junitKtx

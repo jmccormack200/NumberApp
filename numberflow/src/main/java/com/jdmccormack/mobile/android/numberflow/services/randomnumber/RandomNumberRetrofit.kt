@@ -1,4 +1,4 @@
-package com.jdmccormack.mobile.android.numberflow.screens.services
+package com.jdmccormack.mobile.android.numberflow.services.randomnumber
 
 import com.jdmccormack.mobile.android.networking.RetrofitClient
 

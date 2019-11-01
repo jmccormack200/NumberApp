@@ -1,10 +1,7 @@
-package com.jdmccormack.mobile.android.numberflow.services
+package com.jdmccormack.mobile.android.numberflow.services.randomnumber
 
-import android.util.Log
 import com.jdmccormack.mobile.android.commonui.SharedPreferencesManager
 import com.jdmccormack.mobile.android.networking.Result
-import com.jdmccormack.mobile.android.numberflow.screens.services.RandomNumberRetrofit
-import com.jdmccormack.mobile.android.numberflow.screens.services.RandomNumberService
 
 const val RANDOM_NUMBER_KEY = "NUMBER_FLOW_RANDOM_NUMBER_KEY"
 const val DEFAULT_RANDOM_NUMBER = -1
