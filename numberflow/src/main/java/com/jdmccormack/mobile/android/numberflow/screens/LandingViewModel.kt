@@ -7,11 +7,12 @@ import androidx.lifecycle.viewModelScope
 import com.jdmccormack.mobile.android.networking.Result
 import com.jdmccormack.mobile.android.numberflow.services.NumberFactRepository
 import com.jdmccormack.mobile.android.numberflow.services.RandomNumberCachingRepository
+import com.jdmccormack.mobile.android.numberflow.services.models.NumberFact
+import com.jdmccormack.mobile.android.numberflow.services.usecases.GetNumberUseCase
 import kotlinx.coroutines.launch
 
 class LandingViewModel(
-    private val randomNumberRepository: RandomNumberCachingRepository,
-    private val numberFactRepository: NumberFactRepository
+    private val getNumberUseCase: GetNumberUseCase
 ) : ViewModel() {
 
     private val _randomNumber = MutableLiveData<Number>()
@@ -25,32 +26,21 @@ class LandingViewModel(
     }
 
     private fun fetchData() {
-        viewModelScope.launch {
-            _randomNumber.value = when (val result = randomNumberRepository.getRandomNumber()) {
-                is Result.Failure -> 404
-                is Result.Success -> result.value
-            }
-        }
-    }
-
-    //TODO Remove this function and the button and get the data on load.
-    fun fetchFactBtnClicked() {
-        viewModelScope.launch {
-            _numberFact.value = when (val result = numberFactRepository.getFactAboutNumber(
-                _randomNumber.value ?: 404
-            )) {
-                is Result.Failure -> "No Fact found"
-                is Result.Success -> result.value.text
-            }
-        }
+        getNumber()
     }
 
     fun getNewRandomNumberClicked() {
+        getNumber(true)
+    }
+
+    private fun getNumber(refresh: Boolean = false) {
         viewModelScope.launch {
-            _randomNumber.value = when (val result = randomNumberRepository.getNewRandomNumber()) {
-                is Result.Failure -> 404
+            val result = when (val result = getNumberUseCase.invoke(refresh)) {
+                is Result.Failure -> NumberFact("Error", 404, false, "Error")
                 is Result.Success -> result.value
             }
+            _randomNumber.value = result.number
+            _numberFact.value = result.text
         }
     }
-}
+ }

@@ -1,5 +1,6 @@
 package com.jdmccormack.mobile.android.numberflow.services
 
+import android.util.Log
 import com.jdmccormack.mobile.android.commonui.SharedPreferencesManager
 import com.jdmccormack.mobile.android.networking.Result
 import com.jdmccormack.mobile.android.numberflow.screens.services.RandomNumberRetrofit
@@ -12,15 +13,16 @@ class RandomNumberCachingRepository(
     private val randomNumberService: RandomNumberService = RandomNumberRetrofit.randomNumberService,
     private val sharedPreferencesManager: SharedPreferencesManager
 ) {
-    suspend fun getRandomNumber(): Result<String, Number> {
-        val randomNumber = getLocalRandomNumber()
-        if (randomNumber != DEFAULT_RANDOM_NUMBER) {
-            return Result.Success(randomNumber)
+    suspend fun getRandomNumber(refresh: Boolean): Result<String, Number> {
+        if (!refresh && getLocalRandomNumber() != DEFAULT_RANDOM_NUMBER) {
+            Log.e("NOT", " Returning New Number")
+            return Result.Success(getLocalRandomNumber())
         }
         return getNewRandomNumber()
     }
 
     suspend fun getNewRandomNumber(): Result<String, Number> {
+        Log.e("Getting new number", "Getting new number")
         return try {
             val result = randomNumberService.getRandomNumber(1, "uint8")
             if (result.success) {
